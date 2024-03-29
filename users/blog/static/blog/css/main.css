@@ -1,0 +1,21 @@
+/* Example CSS for styling blog pages */
+.content {
+    margin: 20px;
+}
+
+.post {
+    margin-bottom: 20px;
+}
+
+.post h2 {
+    font-size: 24px;
+}
+
+.post p {
+    font-size: 14px;
+    color: #666;
+}
+
+.post-content {
+    margin-top: 20px;
+}

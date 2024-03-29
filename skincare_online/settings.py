@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,6 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    ##maliha
+    'users.apps.UsersConfig',
+    'crispy_forms',
+    #####for blog app Maliha####
+    'blog.apps.BlogConfig', 
+    'video.apps.VideoConfig',
     
 ]
 
@@ -124,9 +131,17 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+##maliha
 STATICFILES_DIRS = [
-    BASE_DIR, "static"
+    os.path.join(BASE_DIR, "static")
 ]
 
+
+######maliha######
 MEDIA_ROOT = BASE_DIR /"media"
 MEDIA_URL ="/media/"
+
+###maliha
+CRISPY_TEMPLATE_PACK= 'bootstrap4' 
+LOGIN_REDIRECT_URL='home'
+LOGIN_URL='login'
