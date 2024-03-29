@@ -5,9 +5,8 @@
 # # Create your views here.
 from django.shortcuts import render,redirect,get_object_or_404
 from django.db import IntegrityError
-from .models import Product
+from .models import Product,combo
 from django.conf import settings
-from .forms import updateProduct
 from django.db.models import Q
 
 
@@ -44,7 +43,7 @@ def demo(request):
     return render(request, "editproduct.html")
 
 def trial(request):
-    return render(request, "adminview.html")
+    return render(request, "thankyou.html")
 
 
 def edit(request, product_id):
@@ -170,5 +169,44 @@ def update_product(request, product_id):
 
 
 
+def p(request):
+    # Retrieve all products from the database
+    pro = Product.objects.all()
+
+    # Pass the products to the template
+    return render(request, 'addcombo.html', {'pro': pro})
 
 
+
+# Function for adding combos (admin)
+def add_combo(request):
+    if request.method == 'POST':
+        combo_name = request.POST.get('combo_name')
+        product_names = request.POST.getlist('combo_products')
+        combo_price = request.POST.get('combo_price')
+
+        
+        new_combo = combo.objects.create(combo_name=combo_name, combo_price=combo_price)
+        
+        # Adding products to the combo
+        for product_name in product_names:
+            product = Product.objects.get(name=product_name)
+            new_combo.combo_products.add(product)
+        
+        return redirect('combo_add')
+    
+
+#TOP 4 Products
+# def top_product(request):
+#     top_product = Product.objects.all()[:4]  # Assuming you want to show only 3 products
+#     return render(request, 'product_view.html', {'top_product': top_product})
+
+
+def see_combo(request):
+    return render(request, "combo_view.html")
+
+
+
+def combo_detail(request):
+    combos = combo.objects.all()
+    return render(request, 'combo_view.html', {'combos': combos})

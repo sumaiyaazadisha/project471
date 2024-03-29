@@ -22,8 +22,9 @@ class combo(models.Model):
     combo_name = models.CharField(max_length=20)
     combo_products = models.ManyToManyField(Product)
     combo_price = models.IntegerField()
+    combo_img = models.ImageField(upload_to='media/' ,default=None)
 
     def __str__(self):
-        return self.name
+        return self.combo_name
 
 
