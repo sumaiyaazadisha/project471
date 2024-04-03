@@ -3,9 +3,11 @@
 # from testing.models import addData
 
 # # Create your views here.
+from django.http import HttpResponseRedirect
 from django.shortcuts import render,redirect,get_object_or_404
 from django.db import IntegrityError
-from .models import Product,combo
+from django.urls import reverse
+from .models import Product, ProductRating,combo
 from django.conf import settings
 from django.db.models import Q
 
@@ -210,3 +212,20 @@ def see_combo(request):
 def combo_detail(request):
     combos = combo.objects.all()
     return render(request, 'combo_view.html', {'combos': combos})
+
+from django.shortcuts import HttpResponseRedirect, reverse
+def rating_view(request):
+    if request.method == 'POST':
+        product_id = request.POST.get('product_id')
+        name = request.POST.get('name')
+        rating = request.POST.get('rating')
+        review = request.POST.get('review')
+
+        ProductRating.objects.create(
+            name = name,
+            user = request.user,
+            product_id = product_id,
+            rating = rating,
+            comment = review,
+        )
+    return HttpResponseRedirect(reverse('show_product', kwargs={'product_id': int(product_id)}))

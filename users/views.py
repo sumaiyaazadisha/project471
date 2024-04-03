@@ -59,7 +59,7 @@ def signin(request):
        if user is not None:
             login(request, user)
             fname=user.first_name
-            return render(request, "users/home.html", {'fname':fname})
+            return redirect("shop_product")
        else:
             messages.error(request, "Bad Credentials")
             return redirect('home')
@@ -86,17 +86,21 @@ def signin(request):
 
 
 
-
+from cart.models import Order
 @login_required()
 def profile(request): 
-    return render(request, 'users/profile.html')
+    order_count = Order.objects.filter(user = request.user).count()
+    context = {
+        'order_count':order_count
+    }
+    return render(request, 'users/profile.html',context)
 
 
 
 def signout(request):
     logout(request)
     messages.success(request, "Logged Out Successfully!")
-    return redirect('home')
+    return redirect('login')
 
  #demoo pic in PC 
 # def show(request):

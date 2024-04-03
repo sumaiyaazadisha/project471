@@ -20,12 +20,14 @@
 * License: https://creativecommons.org/licenses/by/3.0/
 */ -->
 <!doctype html>
+{% load static %}
+{% load cart_info %}
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="author" content="Untree.co">
-  <link rel="shortcut icon" href="favicon.png">
+  <link rel="shortcut icon" href="">
 
   <meta name="description" content="" />
   <meta name="keywords" content="bootstrap, bootstrap4" />
@@ -35,7 +37,7 @@
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 		<link href="/static/css/tiny-slider.css" rel="stylesheet">
 		<link href="/static/css/style.css" rel="stylesheet">
-		<title>Furni Free Bootstrap 5 Template for Furniture and Interior Design Websites by Untree.co </title>
+		<title>Skin-care online </title>
 	</head>
 
 	<body>
@@ -43,8 +45,8 @@
 		<!-- Start Header/Navigation -->
 		<nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
 
-			<div class="container">
-				<a class="navbar-brand" href="index.html">SkinC<span>.</span></a>
+			<div class="container" style="background: #3b5d50 !important;">
+				<a class="navbar-brand" href="/">SkinC<span>.</span></a>
 
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni" aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
@@ -53,23 +55,67 @@
 				<div class="collapse navbar-collapse" id="navbarsFurni">
 					<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
 						<li class="nav-item ">
-							<a class="nav-link" href="index.html">Home</a>
+							<a class="nav-link" href="{% url 'shop_product'%}">Home</a>
 						</li>
-						<li><a class="nav-link" href="shop.html">Shop</a></li>
-						<li class="active"><a class="nav-link" href="about.html">About us</a></li>
+						<li class="active"><a class="nav-link" href="{% url 'shop_product'  %}">Shop</a></li>
+						<li><a class="nav-link" href="about.html">About us</a></li>
 						<li><a class="nav-link" href="services.html">Services</a></li>
 						<li><a class="nav-link" href="blog.html">Blog</a></li>
 						<li><a class="nav-link" href="contact.html">Contact us</a></li>
 					</ul>
+					<style>
+						.dropdown {
+						position: relative;
+						display: inline-block;
+					}
 
+					.dropdown-menu {
+						display: none;
+						position: absolute;
+						background-color: #fff; /* Background color of the dropdown */
+						box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Box shadow for dropdown */
+						z-index: 1;
+					}
+
+					.dropdown-menu li {
+						display: block;
+						font-weight: 500;
+						padding-left: 5px;
+					}
+
+					.dropdown:hover .dropdown-menu {
+						display: block;
+					}
+
+					</style>
 					<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-						<li><a class="nav-link" href="#"><img src="/static/images/user.svg"></a></li>
-						<li><a class="nav-link" href="cart.html"><img src="/static/images/cart.svg"></a></li>
+						<li class="dropdown">
+							<a class="nav-link" href="#"><img src="/static/images/user.svg"></a>
+							<ul class="dropdown-menu">
+								{% if request.user.is_authenticated %}
+								<li><a href="{% url 'profile' %}">Profile</a></li>
+								<li><a href="{% url 'logout' %}">Logout</a></li>
+								{% else %}
+								<li><a href="{% url 'login' %}">Login</a></li>
+								<li><a href="{% url 'register' %}">Sign Up</a></li>
+								{% endif %}
+								
+								
+								
+								<!-- Add more dropdown items as needed -->
+							</ul>
+						</li>
+						{% if request.user.is_authenticated %}
+						<li><a class="nav-link" href="{% url 'my_cart'%}"><img src="/static/images/cart.svg"><span class="badge bg-danger">{{request|cart_count}}</span></a></li>
+						{% else %}
+						<li><a class="nav-link" href="#"><img src="/static/images/cart.svg"><span class="badge bg-danger">0</span></a></li>
+						{% endif %}
 					</ul>
 				</div>
 			</div>
 				
 		</nav>
+		<!-- End Header/Navigation -->
 		<!-- End Header/Navigation -->
 
 
