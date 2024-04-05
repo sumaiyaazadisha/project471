@@ -184,16 +184,18 @@ def add_combo(request):
         combo_name = request.POST.get('combo_name')
         product_names = request.POST.getlist('combo_products')
         combo_price = request.POST.get('combo_price')
+        combo_img = request.FILES.get('picture')
 
         
-        new_combo = combo.objects.create(combo_name=combo_name, combo_price=combo_price)
+        new_combo = combo.objects.create(combo_name=combo_name, combo_price=combo_price,combo_img=combo_img)
         
         # Adding products to the combo
         for product_name in product_names:
             product = Product.objects.get(name=product_name)
             new_combo.combo_products.add(product)
+            
         
-        return redirect('combo_add')
+        return redirect('combo_detail')
     
 
 #TOP 4 Products

@@ -131,7 +131,7 @@
 										<p style=" color: #000000e2; font-family:'Times New Roman', Times, serif; font-size: medium;" ><i class="fa fa-square"></i> Description: {{p.description}}</p>
 									</div>
 									
-									
+									{% if p.quantity != 0 %}
 									<form class="cart clearfix" method="post">
 										<div class="cart-btn d-flex mb-50">
 											<p style=" font-weight: bold; color: #000000e2; font-family:'Times New Roman', Times, serif; font-size: medium;" >Quantity: </p>
@@ -142,6 +142,8 @@
 										</div>
 										<button type="submit" name="addtocart" value="5" class="btn amado-btn">Add to cart</button>
 									</form>
+									{%endif%}
+									
 									<br>
 									
 								</div>

@@ -66,7 +66,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h3 class="text-center mb-4">Log In</h3>
-                        <form action="/login/" method="post">
+                        <form action="{% url 'login' %}" method="POST">
                             {% csrf_token %}
                             <div class="mb-3">
                                 <label for="username" class="form-label">Username</label>
@@ -96,9 +96,7 @@
 		<footer class="footer-section">
 			<div class="container relative">
 
-				<div class="sofa-img">
-					<img src="/static/images/sofa.png" alt="Image" class="img-fluid">
-				</div>
+		
 
 				<div class="row">
 					<div class="col-lg-8">
@@ -125,7 +123,7 @@
 
 				<div class="row g-5 mb-5">
 					<div class="col-lg-4">
-						<div class="mb-4 footer-logo-wrap"><a href="#" class="footer-logo">Furni<span>.</span></a></div>
+						<div class="mb-4 footer-logo-wrap"><a href="#" class="footer-logo">SkinC<span>.</span></a></div>
 						<p class="mb-4">Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant</p>
 
 						<ul class="list-unstyled custom-social">

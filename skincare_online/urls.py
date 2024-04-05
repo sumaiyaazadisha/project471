@@ -25,7 +25,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('testing.urls')),
-    path('', include('users.urls')),
+    # path('', include('users.urls',  namespace='users')),
+    path('users/', include('users.urls')),
     path('video/', include('video.urls')),
     path('blog/', include('blog.urls')),
 

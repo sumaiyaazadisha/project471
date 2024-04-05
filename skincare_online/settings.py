@@ -145,3 +145,23 @@ MEDIA_URL ="/media/"
 CRISPY_TEMPLATE_PACK= 'bootstrap4' 
 LOGIN_REDIRECT_URL='home'
 LOGIN_URL='login'
+
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+# Session expiry settings (example: session expires after 1 hour)
+SESSION_COOKIE_AGE = 3600  # Session expires after 1 hour (3600 seconds)
+
+# Ensure session cookies are only sent over secure connections (HTTPS)
+SESSION_COOKIE_SECURE = True
+
+# Prevent client-side JavaScript from accessing the session cookie
+SESSION_COOKIE_HTTPONLY = True
+
+# Use database-backed sessions (default)
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+
+# Expire sessions when the user closes the browser
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
