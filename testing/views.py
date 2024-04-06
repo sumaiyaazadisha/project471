@@ -229,3 +229,24 @@ def rating_view(request):
             comment = review,
         )
     return HttpResponseRedirect(reverse('show_product', kwargs={'product_id': int(product_id)}))
+
+#product type 
+def skin_product(request):
+    products = Product.objects.all()
+
+    return render(request, 'skin.html', {'products': products})
+
+def hair_product(request):
+    products = Product.objects.all()
+
+    return render(request, 'hair.html', {'products': products})
+
+def makeup_product(request):
+    products = Product.objects.all()
+
+    return render(request, 'makeup.html', {'products': products})
+
+def others_product(request):
+    products = Product.objects.all()
+
+    return render(request, 'others.html', {'products': products})

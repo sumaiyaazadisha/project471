@@ -21,6 +21,10 @@ urlpatterns = [
     path('combov/', views.see_combo),
     path('combosee/', views.combo_detail, name='combo_detail'),
     path('rating-view/', views.rating_view, name='rating_view'),
+    path('skin_product/', views.skin_product, name='skin_product'),
+    path('hair_product/', views.hair_product, name='hair_product'),
+    path('makeup_product/', views.makeup_product, name='makeup_product'),
+    path('others_product/', views.others_product, name='others_product'),
 ]
 
 if settings.DEBUG:

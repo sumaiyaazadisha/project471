@@ -126,7 +126,7 @@
 								<a class="dropdown-item" href="{% url 'skin_product'%}" style="background: #3b5d50">Skin Product</a>
 								<a class="dropdown-item" href="{% url 'makeup_product'%}" style="background: #3b5d50">Makeup Product</a>
 								<a class="dropdown-item" href="{% url 'hair_product'%}" style="background: #3b5d50">Hair Product</a>
-								<a class="dropdown-item" href="{% url 'others_product'%}" style="background: #3b5d50">Others</a>
+                                <a class="dropdown-item" href="{% url 'others_product'%}" style="background: #3b5d50">Others</a>
 							</div>
 						</li>
 					</ul>
@@ -195,16 +195,28 @@
 					  <div class="untree_co-section product-section before-footer-section">
 						<div class="container">
 							  <div class="row">
-					{% for product in products %}
-					<div class="col-12 col-md-4 col-lg-3 mb-5">
-						<a class="product-item" href="{% url 'show_product' product.id %}">
-							<img src="{{product.img.url}}" class="img-fluid product-thumbnail">
-							<h3 class="product-title">{{product.name}}</h3>
-							<strong class="product-price">{{product.price}}৳</strong>
-							<h3 class="product-title">{{product.catagory}}</h3>
+    
+                                    <!-- {% for product in products %}
+                                    <div class="col-12 col-md-4 col-lg-3 mb-5">
+                                        <a class="product-item" href="{% url 'show_product' product.id %}">
+                                            <img src="{{product.img.url}}" class="img-fluid product-thumbnail">
+                                            <h3 class="product-title">{{product.name}}</h3>
+                                            <strong class="product-price">{{product.price}}৳</strong>
 
-						</a>
-					</div> 
+                                        </a>
+                                    </div> 
+                                    {% endfor %} -->
+                    {% for product in products %}
+						{% if product.catagory == 'Makeup' %}
+						<div class="col-12 col-md-4 col-lg-3 mb-5">
+							<a class="product-item" href="{% url 'show_product' product.id %}">
+								<img src="{{product.img.url}}" class="img-fluid product-thumbnail">
+								<h3 class="product-title">{{product.name}}</h3>
+								<strong class="product-price">{{product.price}}৳</strong>
+								
+							</a>
+						</div> 
+						{% endif %}
 					{% endfor %}
 					<!-- End Column 1 -->
 						
