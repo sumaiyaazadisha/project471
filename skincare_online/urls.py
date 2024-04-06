@@ -15,6 +15,10 @@ urlpatterns = [
     path('blog/', include('blog.urls')),
     path('cart/', include('cart.urls')),
     path('payment/', include('payment.urls')),
+    path('skin_product/', include('testing.urls')),
+    path('hair_product/', include('testing.urls')),
+    path('makeup_product/', include('testing.urls')),
+    path('others_product/', include('testing.urls')),
 
 
 ]
