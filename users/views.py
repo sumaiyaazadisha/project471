@@ -85,7 +85,7 @@ def signin(request):
 #     return render(request, "users/login.html")
 
 
-
+#usertype
 from cart.models import Order
 @login_required()
 def profile(request): 

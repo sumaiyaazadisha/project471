@@ -28,7 +28,7 @@ def add_to_cart(request,id):
         order.save()
         order.order_product.add(cart_item[0])
 
-        # first add to cart korle ,sekhane quantity baria dile add hoy na sei issue fixed kora holo
+        # product details theke add  kora jbe cart e + quantity barano jbe
         order_quantity = request.POST.get('quantity')
         cart_item[0].quantity += int(order_quantity) - 1 
         cart_item[0].save()
