@@ -19,6 +19,8 @@ urlpatterns = [
     path('combov/', views.see_combo),
     path('combosee/', views.combo_detail, name='combo_detail'),
     path('index/',views.blog_detail),
+    path('type/',views.trial),
+    path('stype/', views.skin_quiz, name='skin_quiz'),
 ]
 
 if settings.DEBUG:

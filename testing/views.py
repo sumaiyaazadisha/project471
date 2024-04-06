@@ -44,7 +44,7 @@ def demo(request):
     return render(request, "editproduct.html")
 
 def trial(request):
-    return render(request, "thankyou.html")
+    return render(request, "findStype.html")
 
 
 def edit(request, product_id):
@@ -212,6 +212,81 @@ def combo_detail(request):
 def blog_detail(request):
     blog = Post.objects.all()
     return render(request, 'index.html', {'blog': blog})
+
+
+#Finding skintype
+def skin_quiz(request):
+    result = None
+    
+    if request.method == 'POST':
+        score = 0
+        
+        # Question 1
+        skin_feel = request.POST.get('skin_feel', None)
+        if skin_feel:
+            if skin_feel == 'dry':
+                score += 1
+            elif skin_feel == 'oily':
+                score += 2
+            elif skin_feel == 'combination':
+                score += 1
+        
+        # Question 2
+        shine = request.POST.get('shine', None)
+        if shine:
+            if shine == 'yes':
+                score += 2
+        
+        # Question 3
+        weather_condition = request.POST.get('weather_condition', None)
+        if weather_condition:
+            if weather_condition == 'dry':
+                score += 1
+            elif weather_condition == 'oily':
+                score += 2
+        
+        # Question 4
+        cleansing_feel = request.POST.get('cleansing_feel', None)
+        if cleansing_feel:
+            if cleansing_feel == 'tight':
+                score += 1
+            elif cleansing_feel == 'oily':
+                score += 1
+        
+        # Question 5
+        skin_texture = request.POST.get('skin_texture', None)
+        if skin_texture:
+            if skin_texture == 'rough':
+                score += 1
+            elif skin_texture == 'uneven':
+                score += 2
+        
+        # Question 6
+        moisturizer_feel = request.POST.get('moisturizer_feel', None)
+        if moisturizer_feel:
+            if moisturizer_feel == 'greasy':
+                score += 1
+            elif moisturizer_feel == 'still_dry':
+                score += 2
+        
+        # Question 7
+        morning_feel = request.POST.get('morning_feel', None)
+        if morning_feel:
+            if morning_feel == 'dull':
+                score += 1
+            elif morning_feel == 'oily':
+                score += 2
+        
+        if score >= 12:
+            result = 'Your skin type is Oily.'
+        elif score >= 10 and score <= 11:
+            result = 'Your skin type is Combination.'
+        else:
+            result = 'Your skin type is Dry.'
+    
+    
+    
+    return render(request, 'findStype.html', {'result': result})
 
 
 
