@@ -8,6 +8,7 @@ from django.db import IntegrityError
 from .models import Product,combo
 from django.conf import settings
 from django.db.models import Q
+from blog.models import Post
 
 
 # def addQ(request):
@@ -38,7 +39,7 @@ from django.db.models import Q
 #         return render(request, 'about.html')
 
 def tryf(request):
-    return render(request, "test.html")
+    return render(request, "index.html")
 def demo(request):
     return render(request, "editproduct.html")
 
@@ -198,11 +199,6 @@ def add_combo(request):
         return redirect('combo_detail')
     
 
-#TOP 4 Products
-# def top_product(request):
-#     top_product = Product.objects.all()[:4]  # Assuming you want to show only 3 products
-#     return render(request, 'product_view.html', {'top_product': top_product})
-
 
 def see_combo(request):
     return render(request, "combo_view.html")
@@ -212,3 +208,10 @@ def see_combo(request):
 def combo_detail(request):
     combos = combo.objects.all()
     return render(request, 'combo_view.html', {'combos': combos})
+
+def blog_detail(request):
+    blog = Post.objects.all()
+    return render(request, 'index.html', {'blog': blog})
+
+
+
