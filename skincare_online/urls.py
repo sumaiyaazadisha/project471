@@ -19,6 +19,7 @@ urlpatterns = [
     path('hair_product/', include('testing.urls')),
     path('makeup_product/', include('testing.urls')),
     path('others_product/', include('testing.urls')),
+    path('consultation/', include('consultation.urls')),
 
 
 ]

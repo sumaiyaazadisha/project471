@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'video.apps.VideoConfig',
     'cart',
     'payment',
-    
+    'consultation',
 ]
 
 MIDDLEWARE = [
