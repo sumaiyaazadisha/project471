@@ -12,7 +12,6 @@ class Product(models.Model):
     rating = models.FloatField(default=0.0)
     img = models.ImageField(upload_to='media/')
     description = models.CharField(max_length=500)
-    date = models.CharField(max_length=50,default="datetime.now()")
 
     def __str__(self):
         return self.name

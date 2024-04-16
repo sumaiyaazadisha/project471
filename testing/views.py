@@ -9,6 +9,8 @@ from .models import Product,combo
 from django.conf import settings
 from django.db.models import Q
 from blog.models import Post
+import csv
+from django.http import HttpResponse
 
 
 # def addQ(request):
@@ -139,7 +141,7 @@ def update_product(request, product_id):
         brand = request.POST.get('brand', product.brand)
         country = request.POST.get('country', product.country)
         quantity = request.POST.get('quantity', product.quantity)
-        date = request.POST.get('date', product.date)
+        
         description = request.POST.get('description', product.description)
 
         picture = request.FILES.get('picture')
@@ -155,7 +157,7 @@ def update_product(request, product_id):
         product.brand = brand
         product.country = country
         product.quantity = quantity
-        product.date = date
+       
         product.description = description
 
         # If a new picture is uploaded or there is an existing image, update the img field
@@ -289,4 +291,37 @@ def skin_quiz(request):
     return render(request, 'findStype.html', {'result': result})
 
 
+
+
+
+
+
+def download_csv(request):
+    # Create a HttpResponse object with the correct content type for CSV
+    response = HttpResponse(content_type='text/csv; charset=utf-8')
+    response['Content-Disposition'] = 'attachment; filename="products.csv"'
+
+    # Create a CSV writer object
+    writer = csv.writer(response)
+
+    # Write the header row
+    writer.writerow(['Image URL', 'Product Name', 'Price', 'Category', 'Brand', 'Rating', 'Quantity'])
+
+    # Query all products from your model
+    products = Product.objects.all()
+    
+    # Write data rows
+    for product in products:
+        writer.writerow([
+            product.img.url,
+            product.name,
+            product.price,
+            product.catagory,  # Ensure the fields match your model fields
+            product.brand,
+            product.rating,
+            product.quantity
+        ])
+
+    # Return the response with the CSV data
+    return response
 

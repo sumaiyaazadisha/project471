@@ -107,6 +107,21 @@
 					</div>
 				</form>
 				
+				<div class="container">
+					<div class="row">
+						<div class="col-12 d-flex justify-content-end">
+							<button onclick="downloadCsv()" class="btn btn-secondary me-2">Download CSV File</button>
+				
+							<script>
+								function downloadCsv() {
+									window.location.href = "{% url 'download_csv' %}";
+								}
+							</script>
+						</div>
+					</div>
+				</div>
+				
+				
 		<!-- End Sorting the products (ADMIN VIEW) -->
 
 

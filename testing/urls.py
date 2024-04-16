@@ -3,6 +3,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
 from . import views
+from .views import download_csv
 
 urlpatterns = [
     path('demo/', views.demo, name='demo'),
@@ -21,6 +22,7 @@ urlpatterns = [
     path('index/',views.blog_detail),
     path('type/',views.trial),
     path('stype/', views.skin_quiz, name='skin_quiz'),
+    path('download_csv/', download_csv, name='download_csv'),
 ]
 
 if settings.DEBUG:
