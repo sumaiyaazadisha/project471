@@ -713,3 +713,22 @@ textarea {
 
 
 
+
+
+    @keyframes lightingEffect {
+      0%, 100% {
+          text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+      }
+      50% {
+          text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+      }
+  }
+  
+  /* Apply the lighting animation to the h2 element */
+  .section-title {
+      font-size: 24px; /* Adjust the font size as needed */
+      font-weight: bold; /* Make the text bold */
+      animation: lightingEffect 2s infinite;
+      transition: text-shadow 0.3s ease-in-out;
+      margin-bottom: 1rem; /* Margin bottom from the class mb-4 */
+  }
