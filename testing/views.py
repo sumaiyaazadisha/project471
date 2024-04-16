@@ -295,33 +295,27 @@ def skin_quiz(request):
 
 
 
-
+#exporting to csv file function
 def download_csv(request):
-    # Create a HttpResponse object with the correct content type for CSV
     response = HttpResponse(content_type='text/csv; charset=utf-8')
     response['Content-Disposition'] = 'attachment; filename="products.csv"'
 
-    # Create a CSV writer object
     writer = csv.writer(response)
 
-    # Write the header row
     writer.writerow(['Image URL', 'Product Name', 'Price', 'Category', 'Brand', 'Rating', 'Quantity'])
 
-    # Query all products from your model
     products = Product.objects.all()
-    
-    # Write data rows
+
     for product in products:
         writer.writerow([
             product.img.url,
             product.name,
             product.price,
-            product.catagory,  # Ensure the fields match your model fields
+            product.catagory,  
             product.brand,
             product.rating,
             product.quantity
         ])
 
-    # Return the response with the CSV data
     return response
 
