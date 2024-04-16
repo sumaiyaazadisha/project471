@@ -1,44 +1,15 @@
-# from django.shortcuts import render
-# from django.http import HttpResponse
-# from testing.models import addData
 
-# # Create your views here.
+ # Create your views here.
 from django.shortcuts import render,redirect,get_object_or_404
-from django.db import IntegrityError
+from django.contrib import messages
 from .models import Product,combo
 from django.conf import settings
 from django.db.models import Q
-from blog.models import Post
 import csv
 from django.http import HttpResponse
+from django.http import HttpResponseNotAllowed
 
 
-# def addQ(request):
-#     if request.method == 'POST':
-#         name = request.POST.get('name')
-#         country = request.POST.get('country')
-#         price = request.POST.get('price')
-
-#         # Check if an object with the same name already exists
-#         existing_object = addData.objects.filter(name=name).first()
-
-#         if existing_object:
-#             # Duplicate found, handle accordingly (e.g., display an error message)
-#             return render(request, 'demo.html', {'message': 'Entry with this name already exists.'})
-
-#         try:
-#             # No duplicate found, save the new object
-#             new_entry = addData(name=name, country=country, price=price)
-#             new_entry.save()
-#             return render(request, 'about.html', {'message': 'Entry added successfully.'})
-
-#         except IntegrityError as e:
-#             # Handle other integrity errors as needed
-#             return render(request, 'demo.html', {'message': 'An error occurred: {}'.format(str(e))})
-
-#     else:
-#         # Handle GET requests or render the form
-#         return render(request, 'about.html')
 
 def tryf(request):
     return render(request, "index.html")
@@ -105,6 +76,17 @@ def addProduct(request):
         picture = request.FILES.get('picture')
         description = request.POST.get('description')
 
+        duplicate = Product.objects.filter(
+            name=name,
+            brand=brand,
+            catagory=catagory,
+            country=country
+        ).first()
+
+        if duplicate:
+            return redirect('addP')
+        
+
         # Save the data to the database
         Product.objects.create(
             name=name,
@@ -119,7 +101,14 @@ def addProduct(request):
         )
         
         n="Added"
+        messages.success(request, f"Product '{name}' added successfully.")
         return redirect('product') 
+    
+    elif request.method == 'GET':
+        return render(request, 'editproduct.html')
+
+    else:
+        return HttpResponseNotAllowed(['GET', 'POST'])
     
 
 # Function to delete products(admin)   
@@ -198,27 +187,35 @@ def add_combo(request):
             new_combo.combo_products.add(product)
             
         
-        return redirect('combo_detail')
+        return redirect('product')
     
 
-
-def see_combo(request):
-    return render(request, "combo_view.html")
-
-
-
+#fetch all the combos
 def combo_detail(request):
     combos = combo.objects.all()
     return render(request, 'combo_view.html', {'combos': combos})
 
-def blog_detail(request):
-    blog = Post.objects.all()
-    return render(request, 'index.html', {'blog': blog})
+
+def show_combo(request, combo_id):
+    c = get_object_or_404(combo, pk=combo_id)
+
+    return render(request, 'combo.html', {'c':c})
+
+
+# Function to delete combo(admin)   
+def delete_combo(request, combo_id):
+    c = get_object_or_404(combo, pk=combo_id)
+    c.delete()
+    return redirect('product') 
+
+
 
 
 #Finding skintype
 def skin_quiz(request):
     result = None
+    type=None
+    context ={}
     
     if request.method == 'POST':
         score = 0
@@ -281,14 +278,25 @@ def skin_quiz(request):
         
         if score >= 12:
             result = 'Your skin type is Oily.'
+            type= 'oily'
         elif score >= 10 and score <= 11:
             result = 'Your skin type is Combination.'
+            type = 'combination'
         else:
             result = 'Your skin type is Dry.'
+            type='dry'
+
+        
+        products = Product.objects.filter(catagory__icontains=type) 
+
+        context = {
+            'result': result,
+            'products': products
+        }
     
     
     
-    return render(request, 'findStype.html', {'result': result})
+    return render(request, 'findStype.html', context)
 
 
 

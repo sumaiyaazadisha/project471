@@ -10,3 +10,8 @@ def top_products(request):
     # Retrieve the top three highest-rated products
     top_products = Product.objects.order_by('-rating')[:3]
     return  {'top_products': top_products}
+
+
+def combo_detail(request):
+    combos = combo.objects.all()
+    return  {'combos': combos}

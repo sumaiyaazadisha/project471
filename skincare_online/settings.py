@@ -74,6 +74,8 @@ TEMPLATES = [
                 # kkk
                 'testing.context_processors.three_combos',
                 'testing.context_processors.top_products',
+                'testing.context_processors.combo_detail',
+                
 
             ],
         },

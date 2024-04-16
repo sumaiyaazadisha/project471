@@ -1,5 +1,5 @@
 from django.db import models
-from datetime import datetime 
+
 
 # Create your model  
 class Product(models.Model):
@@ -15,6 +15,15 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def category_preview(self):
+        """Returns the part of the category up to the first comma."""
+        return self.catagory.split(',')[0] if ',' in self.catagory else self.catagory
+
+    def skin_type(self):
+        """Returns the part of the category after the first comma."""
+        parts = self.catagory.split(',')
+        return parts[1].strip() if len(parts) > 1 else ''
 
  
 class combo(models.Model):
@@ -25,5 +34,20 @@ class combo(models.Model):
 
     def __str__(self):
         return self.combo_name
+    
+    def total_price(self):
+        total_price = 0
+
+        for product in self.combo_products.all():
+            total_price += product.price
+
+        return total_price
+    
+    def p_difference(self):
+        total_price = self.total_price()
+
+        price_difference =  total_price - self.combo_price 
+ 
+        return price_difference
 
 

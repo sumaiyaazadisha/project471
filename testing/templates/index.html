@@ -129,7 +129,8 @@
 						<div class="imgs-grid">
 							{% for combo in three_combos %}
 								<div class="grid grid-{{ forloop.counter }}">
-									<img src="{{ combo.combo_img.url }}" alt="{{ combo.combo_name }}">
+									<a class="product-item" href="{% url 'show_combo' combo.id %}">
+									<img src="{{ combo.combo_img.url }}" alt="{{ combo.combo_name }}"></a>
 									<p style="color: black; font-style: italic;">{{combo.combo_name}}</p>
 								</div>
 							{% endfor %}

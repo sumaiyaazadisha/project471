@@ -71,7 +71,7 @@
         <div class="container" style="color: black;text-align: justify; font-size: larger; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
             <h1>Skin Type </h1>
         
-            <form method="post">
+            <form method="post" action="{% url 'skin_quiz'%}">
                 {% csrf_token %}
                 <label for="skin_feel">1. How does your skin usually feel throughout the day?</label><br>
                 <input type="radio" id="skin_feel_dry" name="skin_feel" value="dry">
@@ -127,13 +127,38 @@
                 
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
-        
-            {% if result %}
-                <div class="result">{{ result }}</div>
-            {% endif %}
-        </div>
-        
+ 
 
+    <!--  Start Show skintype products -->
+            {% if result %}
+                <div class="result"><h2>{{ result }}</h2></div>
+            {%endif%}
+
+			{% if products %}
+			<div class="result"><h1>Recommended Products For Your Skin</h1></div>
+			<div class="untree_co-section product-section before-footer-section">
+				<div class="container">
+					<div class="row">
+						{% for product in products %}
+						<div class="col-12 col-md-4 col-lg-3 mb-5">
+							<a class="product-item" href="{% url 'show_product' product.id %}">
+								<img src="{{product.img.url}}" class="img-fluid product-thumbnail">
+								<h3 class="product-title">{{product.name}}</h3>
+								<strong class="product-price">{{product.price}}৳</strong>
+	
+							</a>
+						</div> 
+						{% endfor %}
+					  </div>
+				</div>
+			</div>
+			<p><a href="{% url 'skin_quiz'%}" class="btn btn-primary">Submit Another Response</a></p>
+			{%endif%}
+        </div>
+	<!--  End Show skintype products -->
+
+
+	
 		<!-- Start Footer Section -->
 		<footer class="footer-section">
 			<div class="container relative">
