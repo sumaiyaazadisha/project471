@@ -19,7 +19,6 @@ urlpatterns = [
     path('combo/<int:combo_id>/', views.show_combo, name='show_combo'),
     path('combo/',views.p, name= 'combo_add'),
     path('add_combo/', views.add_combo, name='add_combo'),
-    # path('combov/', views.see_combo),
     path('combosee/', views.combo_detail, name='combo_detail'),
     path('type/',views.trial),
     path('stype/', views.skin_quiz, name='skin_quiz'),

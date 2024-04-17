@@ -75,6 +75,9 @@ TEMPLATES = [
                 'testing.context_processors.three_combos',
                 'testing.context_processors.top_products',
                 'testing.context_processors.combo_detail',
+                'testing.context_processors.makeup_products_view',
+                # 'testing.context_processors.all_makeup',
+                
                 
 
             ],

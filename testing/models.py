@@ -11,19 +11,22 @@ class Product(models.Model):
     quantity = models.IntegerField(default=0)
     rating = models.FloatField(default=0.0)
     img = models.ImageField(upload_to='media/')
-    description = models.CharField(max_length=500)
+    description = models.CharField(max_length=1000)
 
     def __str__(self):
         return self.name
     
     def category_preview(self):
-        """Returns the part of the category up to the first comma."""
         return self.catagory.split(',')[0] if ',' in self.catagory else self.catagory
 
     def skin_type(self):
-        """Returns the part of the category after the first comma."""
-        parts = self.catagory.split(',')
-        return parts[1].strip() if len(parts) > 1 else ''
+        split_catagory = self.catagory.split(',', 1)
+
+        if len(split_catagory) > 1:
+            return split_catagory[1].strip()
+
+        return 'Normal'
+
 
  
 class combo(models.Model):

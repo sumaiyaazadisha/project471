@@ -89,7 +89,7 @@
 
 					<!-- Start Column 1 -->
 					<div class="col-md-12 col-lg-3 mb-5 mb-lg-0">
-						<h2 class="mb-4 section-title">High-Quality Products.</h2>
+						<h2 class="mb-4 section-title" style="font-family: 'Times New Roman', Times, serif;; font-size:xx-large;">High-Quality Products.</h2>
 						<p class="mb-4">Our products are formulated with cutting-edge research and technology, ensuring effective and safe solutions for all skin types. Discover the difference of personalized, premium skincare with SkinC today! </p>
 						<p><a href="{% url 'shop_product'%}" class="btn">Explore</a></p>
 					</div> 
@@ -137,7 +137,7 @@
 						</div>
 					</div>
 					<div class="col-lg-5 ps-lg-5">
-						<h2 class="section-title mb-4">Enjoy Special Combos & Save A Lot!</h2>
+						<h2 class="section-title mb-4" style="font-family: 'Times New Roman', Times, serif;; font-size:xx-large;">Enjoy Special Combos & Save A Lot!</h2>
 						<p>
 							Discover exceptional value with SkinC's curated product combo offers. Each set combines our top-rated skincare products designed to complement each other, providing a comprehensive skincare routine tailored to your needs. Enjoy the benefits of radiant, healthy skin while saving on your favorite products. Elevate your skincare experience with SkinC's exclusive combo offers today!</p>
 
@@ -155,11 +155,11 @@
 			<div class="container">
 				<div class="row justify-content-between">
 					<div class="col-lg-6">
-						<h2 class="section-title">Consult A Doctor!</h2>
+						<h2 class="section-title" style="font-family: 'Times New Roman', Times, serif;; font-size:xx-large;">Consult A Doctor!</h2>
 						<p>Welcome to Skinc, your trusted partner for online skin consultation bookings! Whether you have a specific skin concern, need advice on skincare routines, or simply want a check-up, Skinc is here to help. Booking a consultation is quick and easy—just select a dermatologist based on your preferences, schedule an appointment that suits you, and you're ready to go. Our secure and user-friendly platform ensures you receive personalized and professional care from the comfort of your home. Let us take care of your skincare needs so you can enjoy healthy, glowing skin!</p>
 						
 						<p><a herf="{% url 'combo_detail' %}" class="btn">Explore</a></p>
-						<p><h3 class="section-title">Or You can find your skin type bofore consulting a doctor!</h3></p>
+						<p><h3 class="section-title" style="font-family: 'Times New Roman', Times, serif;; font-size:xx-large;">Or You can find your skin type bofore consulting a doctor!</h3></p>
 						<p><a href="{% url 'skin_quiz'%}" class="btn btn-black-outline">Click Here</a></p>
 						
 					</div>
@@ -177,51 +177,39 @@
 
 		<!-- Start Popular Product -->
 		<div class="popular-product">
+			
 			<div class="container">
+				<h2 class="section-title" style="color: mediumpurple; font-size:xx-large;font-family: 'Times New Roman', Times, serif; font-style: italic;"> Checkout Our Limited Edition Makeup Product!</h2>
+
+				
+				
 				<div class="row">
-
+					{% for products in makeup_products%}
 					<div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0">
 						<div class="product-item-sm d-flex">
+						
 							<div class="thumbnail">
-								<img src="/static/images/product-1.png" alt="Image" class="img-fluid">
+								<img src="{{products.img.url}}" alt="Image" class="img-fluid">
 							</div>
 							<div class="pt-3">
-								<h3>Nordic Chair</h3>
-								<p>Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio </p>
-								<p><a href="#">Read More</a></p>
+								<h3>{{products.name}}r</h3>
+								<p>{{products.price}} </p>
+								<p><a href="{% url 'show_product' products.id %}">Read More</a></p>
 							</div>
+						
 						</div>
 					</div>
-
-					<div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0">
-						<div class="product-item-sm d-flex">
-							<div class="thumbnail">
-								<img src="/static/images/product-2.png" alt="Image" class="img-fluid">
-							</div>
-							<div class="pt-3">
-								<h3>Kruzo Aero Chair</h3>
-								<p>Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio </p>
-								<p><a href="#">Read More</a></p>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0">
-						<div class="product-item-sm d-flex">
-							<div class="thumbnail">
-								<img src="/static/images/product-3.png" alt="Image" class="img-fluid">
-							</div>
-							<div class="pt-3">
-								<h3>Ergonomic Chair</h3>
-								<p>Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio </p>
-								<p><a href="#">Read More</a></p>
-							</div>
-						</div>
-					</div>
-
+					{%endfor%}
 				</div>
+				<form class="d-flex" method="post" action="{% url 'shop_product' %}">
+					{% csrf_token %}
+					<input type="hidden" name="category" value="makeup">
+					<input class="form-control me-2" type="search" value="makeup" placeholder="Search Products..." name="searched" style="display: none;">
+					<button class="btn btn-outline-secondary" type="submit">See More!</button>
+				</form>
 			</div>
 		</div>
+
 		<!-- End Popular Product -->
 
 		<!-- Start Testimonial Slider -->

@@ -15,3 +15,11 @@ def top_products(request):
 def combo_detail(request):
     combos = combo.objects.all()
     return  {'combos': combos}
+
+def makeup_products_view(request):
+    makeup_products = Product.objects.filter(catagory__icontains='makeup')[:3]
+    return  {'makeup_products': makeup_products}
+
+# def all_makeup(request):
+#     products = Product.objects.all()
+#     return  {'products': products}

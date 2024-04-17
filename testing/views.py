@@ -1,7 +1,6 @@
 
  # Create your views here.
 from django.shortcuts import render,redirect,get_object_or_404
-from django.contrib import messages
 from .models import Product,combo
 from django.conf import settings
 from django.db.models import Q
@@ -101,7 +100,6 @@ def addProduct(request):
         )
         
         n="Added"
-        messages.success(request, f"Product '{name}' added successfully.")
         return redirect('product') 
     
     elif request.method == 'GET':
