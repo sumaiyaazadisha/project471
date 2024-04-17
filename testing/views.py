@@ -9,7 +9,6 @@ from django.http import HttpResponse
 from django.http import HttpResponseNotAllowed
 
 
-
 def tryf(request):
     return render(request, "index.html")
 def demo(request):
