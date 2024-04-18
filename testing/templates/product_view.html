@@ -163,9 +163,9 @@
 											</div>
 											
 										</div>
-										<div class="total_review">
-											<span style="font-weight:700">Customer Rating: {{p.average_rating}} ( {{p.total_rating}} )</span>
-										</div>
+										<!-- <div class="total_review">
+											<span style="font-weight:700">Customer Rating:</span>
+										</div> -->
 										<!-- Avaiable -->
 										{% if p.quantity != 0 %}
 										<p class="avaibility" style="color: green;"><i class="fa fa-circle"></i> In Stock</p>
@@ -195,7 +195,7 @@
 										<p style=" color: #000000e2; font-family:'Times New Roman', Times, serif; font-size: medium;" ><i class="fa fa-square"></i> Description: {{p.description}}</p>
 									</div>
 									
-									{% if p.quantity != 0 %}
+									{% if p.quantity != 0 and request.user.is_authenticated %}
 									<form class="cart clearfix" method="post">
 									
 									<form class="cart clearfix" action="{% url 'add_to_cart' p.id%}" method="post">
