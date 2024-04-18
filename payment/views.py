@@ -37,6 +37,9 @@ def checkout(request):
                 item.save()
             messages.success(request,"Order confirm")
             return redirect("shop_product")   
+
+
+    #cuopon apply
     coupon = AppliedCouponCode.objects.filter(user=request.user)
     if coupon.exists():
         if order_qs.is_coupon == True:
