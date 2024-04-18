@@ -209,10 +209,7 @@
 										</div>
 										<button type="submit" name="addtocart" value="5" class="btn amado-btn">Add to cart</button>
 									</form>
-									{%endif%}
 									
-										{% if request.user.is_authenticated %}
-											<button type="submit" name="addtocart" class="btn amado-btn">Add to cart</button>
 										{% else %}
 										<button type="submit" name="addtocart" class="btn amado-btn" disabled>Please Login</button>
 										{% endif %}
