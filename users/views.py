@@ -58,17 +58,14 @@ def signin(request):
        user=authenticate(username=username, password=pass1)
        if user is not None:
             login(request, user)
-<<<<<<< HEAD
             
             if user.is_superuser:
                 return redirect('product')
             else:
                 fname=user.first_name
                 return render(request, "users/home.html", {'fname':fname})
-=======
             fname=user.first_name
             return redirect("shop_product")
->>>>>>> c9edd3d6446f83d7ef99f191f7dda35065606150
        else:
             messages.error(request, "Bad Credentials")
             return redirect('home')
