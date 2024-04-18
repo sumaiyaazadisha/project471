@@ -1,6 +1,11 @@
 
+# # Create your views here.
+from django.http import HttpResponseRedirect
  # Create your views here.
 from django.shortcuts import render,redirect,get_object_or_404
+from django.db import IntegrityError
+from django.urls import reverse
+from .models import Product, ProductRating,combo
 from .models import Product,combo
 from django.conf import settings
 from django.db.models import Q
@@ -324,3 +329,41 @@ def download_csv(request):
 
     return response
 
+
+from django.shortcuts import HttpResponseRedirect, reverse
+def rating_view(request):
+    if request.method == 'POST':
+        product_id = request.POST.get('product_id')
+        name = request.POST.get('name')
+        rating = request.POST.get('rating')
+        review = request.POST.get('review')
+
+        ProductRating.objects.create(
+            name = name,
+            user = request.user,
+            product_id = product_id,
+            rating = rating,
+            comment = review,
+        )
+    return HttpResponseRedirect(reverse('show_product', kwargs={'product_id': int(product_id)}))
+
+#product type 
+def skin_product(request):
+    products = Product.objects.all()
+
+    return render(request, 'skin.html', {'products': products})
+
+def hair_product(request):
+    products = Product.objects.all()
+
+    return render(request, 'hair.html', {'products': products})
+
+def makeup_product(request):
+    products = Product.objects.all()
+
+    return render(request, 'makeup.html', {'products': products})
+
+def others_product(request):
+    products = Product.objects.all()
+
+    return render(request, 'others.html', {'products': products})

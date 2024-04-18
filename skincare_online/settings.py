@@ -45,7 +45,9 @@ INSTALLED_APPS = [
     #####for blog app Maliha####
     'blog.apps.BlogConfig', 
     'video.apps.VideoConfig',
-    
+    'cart',
+    'payment',
+    'consultation',
 ]
 
 MIDDLEWARE = [
