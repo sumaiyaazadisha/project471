@@ -64,8 +64,11 @@ def signin(request):
             else:
                 fname=user.first_name
                 return render(request, "users/home.html", {'fname':fname})
+<<<<<<< HEAD
             fname=user.first_name
             return redirect("shop_product")
+=======
+>>>>>>> a686eb687f3aaa3588c7967059d7f346a5b90b48
        else:
             messages.error(request, "Bad Credentials")
             return redirect('home')
