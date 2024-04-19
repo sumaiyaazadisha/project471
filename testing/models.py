@@ -31,11 +31,11 @@ class Product(models.Model):
         return 'Normal'
 
     
-    def average_rating(self) -> float:
-        return ProductRating.objects.filter(product=self).aggregate(Avg("rating"))["rating__avg"] or 0
+    # def average_rating(self) -> float:
+    #     return ProductRating.objects.filter(product=self).aggregate(Avg("rating"))["rating__avg"] or 0
     
-    def total_rating(self) -> float:
-        return ProductRating.objects.filter(product=self).aggregate(Count("rating"))["rating__count"] or 0
+    # def total_rating(self) -> float:
+    #     return ProductRating.objects.filter(product=self).aggregate(Count("rating"))["rating__count"] or 0
     
 class ProductRating(models.Model):
     name = models.CharField(max_length=50)

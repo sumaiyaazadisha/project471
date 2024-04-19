@@ -163,9 +163,9 @@
 											</div>
 											
 										</div>
-										<div class="total_review">
-											<span style="font-weight:700">Customer Rating: {{p.average_rating}} ( {{p.total_rating}} )</span>
-										</div>
+										<!-- <div class="total_review">
+											<span style="font-weight:700">Customer Rating:</span>
+										</div> -->
 										<!-- Avaiable -->
 										{% if p.quantity != 0 %}
 										<p class="avaibility" style="color: green;"><i class="fa fa-circle"></i> In Stock</p>
@@ -195,7 +195,7 @@
 										<p style=" color: #000000e2; font-family:'Times New Roman', Times, serif; font-size: medium;" ><i class="fa fa-square"></i> Description: {{p.description}}</p>
 									</div>
 									
-									{% if p.quantity != 0 %}
+									{% if p.quantity != 0 and request.user.is_authenticated %}
 									<form class="cart clearfix" method="post">
 									
 									<form class="cart clearfix" action="{% url 'add_to_cart' p.id%}" method="post">
@@ -209,10 +209,7 @@
 										</div>
 										<button type="submit" name="addtocart" value="5" class="btn amado-btn">Add to cart</button>
 									</form>
-									{%endif%}
 									
-										{% if request.user.is_authenticated %}
-											<button type="submit" name="addtocart" class="btn amado-btn">Add to cart</button>
 										{% else %}
 										<button type="submit" name="addtocart" class="btn amado-btn" disabled>Please Login</button>
 										{% endif %}
@@ -247,7 +244,7 @@
 										</div>
 										<div class="mb-3">
 											<label for="name" class="form-label">Name:</label>
-											<input type="text" class="form-control" id="name" name="name" required>
+											<input type="text" class="form-control" id="name" name="name" value="{{p.name}}">
 										</div>
 										<div class="mb-3">
 											<label for="rating" class="form-label">Rating:</label>
