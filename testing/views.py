@@ -347,6 +347,8 @@ def rating_view(request):
         )
     return HttpResponseRedirect(reverse('show_product', kwargs={'product_id': int(product_id)}))
 
+
+
 #product type 
 def skin_product(request):
     products = Product.objects.all()
