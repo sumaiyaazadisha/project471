@@ -83,17 +83,13 @@
 		<!-- Start Contact Form -->
 		<div class="untree_co-section">
       <div class="container">
-
         <div class="block">
           <div class="row justify-content-center">
-
-
             <div class="col-md-8 col-lg-8 pb-4">
                 <h2 class="h3 mb-3 text-black" style="color: forestgreen;">Product Details</h2>
                 <h5> Product ID:{% if product %} {{ product.id }} {% endif %} </h5>
                 <form method="post" enctype="multipart/form-data" action="{% url 'update_product' product.id %}">
                 {% csrf_token %}
-			
                 <div class="row">
                 	<div class="form-group">
                         <label class="text-black"  >Name</label>
@@ -118,7 +114,6 @@
                   </div>
 				  <div class="form-group">
 					<label class="text-black" >Quantity</label>
-					
 					<input type="text" class="form-control" id="quantity"  name="quantity" value="{{product.quantity}}">
 				  </div>
 				  <div class="form-group">
@@ -132,15 +127,10 @@
                     <br>
                     <input style="color:blue" type="file" id="picture" name="picture" accept="image/*" name="picture">
                   </div>
-
                 <button type="submit" class="btn btn-primary-hover-outline">Update</button>
               </form>
-			  
-
             </div>
-
           </div>
-
         </div>
       </div>
     </div>

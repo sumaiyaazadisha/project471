@@ -38,9 +38,7 @@
 
 				<div class="collapse navbar-collapse" id="navbarsFurni">
 					<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
-						<li class="nav-item active">
-							<a class="nav-link" href="{% url 'index'%}">Home</a>
-						</li>
+						<li ><a class="nav-link" href="{% url 'index'%}">Home</a></li>
 						<li><a class="nav-link" href="{% url 'shop_product'%}">Shop</a></li>
 						<li><a class="nav-link" href="about.html">About us</a></li>
 						<li><a class="nav-link" href="services.html">Services</a></li>
@@ -67,7 +65,8 @@
 				</div>
 			</div>
 		<!-- End Hero Section -->
-
+		
+<!-- Start Find Skin Type -->
         <div class="container" style="color: black;text-align: justify; font-size: larger; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
             <h1>Skin Type </h1>
         
@@ -151,8 +150,9 @@
 						{% endfor %}
 					  </div>
 				</div>
+				<p><a href="{% url 'skin_quiz'%}" class="btn btn-primary">Submit Another Response</a></p>
 			</div>
-			<p><a href="{% url 'skin_quiz'%}" class="btn btn-primary">Submit Another Response</a></p>
+			
 			{%endif%}
         </div>
 	<!--  End Show skintype products -->

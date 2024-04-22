@@ -77,27 +77,20 @@
 			</div>
 
 		
-		<!-- Start Contact Form -->
+		<!-- Start product add Form -->
 		<div class="untree_co-section">
       <div class="container">
-
         <div class="block">
           <div class="row justify-content-center">
-
-
             <div class="col-md-8 col-lg-8 pb-4">
                 <h2 class="h3 mb-3 text-black">New Product Details</h2>
                 <form method="post" enctype="multipart/form-data" action="{% url 'addP' %}">
-                {% csrf_token %}
-            
+                {% csrf_token %}           
                 <div class="row">
-                  {% comment %} <div class="col-6"> {% endcomment %}
                     <div class="form-group">
                         <label class="text-black"  >Name</label>
                         <input type="text" class="form-control" id="name" name="name">
-                      </div>
-                  {% comment %} </div> {% endcomment %}
-            
+                      </div>          
                 </div>
                 <div class="form-group">
                   <label class="text-black" >Price</label>
@@ -124,30 +117,21 @@
                     <label class="text-black" >Description</label>
                     <input type="text" class="form-control" id="description" name="description">
                   </div>
-                
                   <div class="form-group mb-5">
                     <label class="text-black" for="picture" >Product Image</label>
                     <br>
                     <input style="color:blue" type="file" id="picture" name="picture" accept="image/*" name="picture" required>
                   </div>
-
                 <button type="submit" class="btn btn-primary-hover-outline">Add</button>
               </form>
-			  
-
             </div>
-
           </div>
-
         </div>
-
       </div>
-
-
     </div>
   </div>
 
-  <!-- End Contact Form -->
+  <!-- End add product Form -->
 
 		
 
