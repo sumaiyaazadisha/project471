@@ -52,6 +52,31 @@
 					<li class="active"><a class="nav-link" href="contact.html">Contact us</a></li>
 				</ul>
 
+				<style>
+					.dropdown {
+					position: relative;
+					display: inline-block;
+				}
+
+				.dropdown-menu {
+					display: none;
+					position: absolute;
+					background-color: #fff; /* Background color of the dropdown */
+					box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Box shadow for dropdown */
+					z-index: 1;
+				}
+
+				.dropdown-menu li {
+					display: block;
+					font-weight: 500;
+					padding-left: 5px;
+				}
+
+				.dropdown:hover .dropdown-menu {
+					display: block;
+				}
+
+				</style>
 				<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
 					<li><a class="nav-link" href="#"><img src="/static/images/user.svg"></a></li>
 					<li><a class="nav-link" href="cart.html">AdminPanel</a></li>
